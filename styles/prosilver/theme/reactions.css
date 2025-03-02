@@ -124,6 +124,17 @@ img.reaction-notification {
 .has-profile .post-buttons .tpr-button{
 	right: 70px !important;
 }
+.traffic_light_go_color {
+	color:  #1b9a1b;
+}
+
+.traffic_light_amber_color {
+	color: orange;
+}
+
+.traffic_light_stop_color {
+	color: #bc2a4d;
+}
 
 .traffic_light_go {
 	border-bottom: solid 2px #1b9a1b;

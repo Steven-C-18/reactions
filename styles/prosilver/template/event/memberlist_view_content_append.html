@@ -13,13 +13,13 @@
 
 				<ul style="list-style: none;">
 					<li><i class="icon fa fa-smile-o icon-green" aria-hidden="true"></i>
-				    	<span data-pos-user="{{ postrow.POSTER_ID }}" style="color:  #1b9a1b">{{ USER_REACTIONS_POS }}</span>
+				    	<span data-pos-user="{{ postrow.POSTER_ID }}" class="traffic_light_go_color">{{ USER_REACTIONS_POS }}</span>
 				    </li>
 					<li><i class="icon fa fa-meh-o icon-orange" aria-hidden="true"></i>
-				    	<span data-neu-user="{{ postrow.POSTER_ID }}" style="color: orange;">{{ USER_REACTIONS_NEU }}</span>
+				    	<span data-neu-user="{{ postrow.POSTER_ID }}" class="traffic_light_amber_color">{{ USER_REACTIONS_NEU }}</span>
 				    </li>
-					<li><i class="icon fa  fa-frown-o icon-red" aria-hidden="true"></i>
-				   	 	<span data-neg-user="{{ postrow.POSTER_ID }}" style="color: #bc2a4d;">{{ USER_REACTIONS_NEG }}</span>
+					<li><i class="icon fa fa-frown-o icon-red" aria-hidden="true"></i>
+				   	 	<span data-neg-user="{{ postrow.POSTER_ID }}" class="traffic_light_stop_color">{{ USER_REACTIONS_NEG }}</span>
 					</li>
 				</ul>
 
