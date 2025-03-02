@@ -60,7 +60,6 @@ $.extend($reactions, {
 		$("#reaction-count" + res.POST_ID).text(parseInt(res.REACTIONS));
 		// the broke link, use data- and then []		
 		$('[data-show-user-reactions="' + res.POSTER_ID + '"]').show();
-		//
 		$('[data-reactions-user="' + res.POSTER_ID + '"]').text(parseInt(res.USER_TOTAL));
 		$('[data-pos-user="' + res.POSTER_ID + '"]').text(res.USER_REACTIONS);
 		$('[data-neg-user="' + res.POSTER_ID + '"]').text(res.USER_REACTIONS_NEG);
