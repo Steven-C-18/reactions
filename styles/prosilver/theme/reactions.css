@@ -3,6 +3,7 @@
 	* @copyright (c) 2024, Steve, https://steven-clark.tech/
 	* @license GNU General Public License, version 2 (GPL-2.0)
 */
+/* pre- fix all classes, remove tpr */
 
 .centered { text-align: center; }
 
@@ -131,25 +132,16 @@ img.reaction-notification {
 .traffic_light_stop {
  	border-bottom: solid 2px #bc2a4d;
  	padding-bottom: 3px;
- 	/*
- 	 	border-radius:  50%;
- 	padding: 5px; */
 }
-/*  network */
-.reaction-panel {
-	background: #fff;
-	float: right;
-	border-radius: 3px;
-	margin-top: -5px;
-	padding: 3px;	
-}
+
 .badge.reaction-count {
 	margin-top: -9px !important;
 	margin-right: -12px !important;
 	border-radius: 25% !important;
 }
 
-/* Responsive == this old review and test in 0.9.4
+/* 
+	* Responsive == this old review and test in 0.9.4
 */ 
 @media (max-width: 700px) {
 	.reaction_image {

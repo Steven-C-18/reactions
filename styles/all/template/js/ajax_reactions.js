@@ -76,16 +76,20 @@ $.extend($reactions, {
 		});
 		imgSrc.appendTo("#reaction-types" + postId);
 	},
+	work_it_out: (count, amount, amount_lang) => {
+		//Did i ever tell you how the constipated maths magician worked it out?
+		return count = Math.sign(count) * ((Math.abs(count) / amount).toFixed(1)) + amount_lang;		
+	},
 	round_counts: (count) => {
 		switch (true) {
 			case count < $k:
 			  return count;
 			break;
 			case count < $m:
-				return count = Math.sign(count) * ((Math.abs(count) / $k).toFixed(1)) + tprData.k;
+				return count = $reactions.work_it_out(count, $k, tprData.k);
 			break;
 			case $count >= $m:
-				return count = Math.sign(count) * ((Math.abs(count) / $m).toFixed(1)) + tprData.m;
+				return count = $reactions.work_it_out(count, $m, tprData.m);
 			break;
 			//billion, never.
 			default:
@@ -134,12 +138,8 @@ $.extend($reactions, {
 		$reactions.click.reactions.parent().css("visibility", "hidden");//prop
 		$reactions.click.smile.addClass('fa-spin icon-red');
 	},
-	reacted_always: () => {
-		$("#load-more-reacted i").removeClass('fa-spin fa-spinner icon-red');
-	},
-	reacted_before: () => {
-		$("#load-more-reacted i").addClass('fa-spin fa-spinner icon-red');
-	},
+	reacted_always: () => { $("#load-more-reacted i").removeClass('fa-spin fa-spinner icon-red'); },
+	reacted_before: () => { $("#load-more-reacted i").addClass('fa-spin fa-spinner icon-red'); },
 	build_reacted: (jsonData, load_more) => {
 		$.each(JSON.parse(jsonData), (index, json) => {
 			$('#load-reacted-user').append([
@@ -162,7 +162,6 @@ $.extend($reactions, {
 					$('<hr class="dashed" />')
 				])
 			]);
-
 			if (json.img != false) {
 				var reaction_image = $("<img />").attr({
 					src: tprData.url + json.img,
