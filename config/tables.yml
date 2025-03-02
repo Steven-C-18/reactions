@@ -1,3 +1,0 @@
-parameters:
-    steve.reactions.tables.reactions_table: '%core.table_prefix%reactions'
-    steve.reactions.tables.reaction_types_table: '%core.table_prefix%reaction_types'
