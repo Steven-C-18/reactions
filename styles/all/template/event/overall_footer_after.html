@@ -1,6 +1,5 @@
 
 {% if S_VIEWTOPIC_REACTIONS && REACTIONS_ENABLED or S_REACTION_MEMBERS && REACTIONS_ENABLED %}
-
 <div id="login-wrapper" class="login-wrapper"></div>
 	<div id="show-reacted" class="phpbb_alert">
 
@@ -9,14 +8,11 @@
 	</a>
 
 	<strong class="reaction-ear reaction-ear-color" style="margin-bottom: 5px;">{{ lang('REACTIONS') }} <span id="load-more-count"></span></strong>
-
 	<div id="reaction-type-top" style="margin-top: 5px;text-align: center;"></div>
 
 	<hr class="dashed" />
 	<div class="clear"></div>
-
 	{% INCLUDE 'load_reactions.html' %}
-
 	<div class="clear"></div>
 
 	<a id="load-more-reacted"><i class="icon fa fa-history fa-fw icon-green" aria-hidden="true"></i>{{ lang('REACTIONS_LOAD_MORE') }}</a>
