@@ -9,8 +9,7 @@
 			<span class="badge tpr-font">{{ lang('REACTIONS_RECIEVED') }} {{ RECENT_REACTIONS }}</span>
 
 			{% if REACTIONS_ENABLE_TRAFFIC_LIGHT %}
-			<div style="text-align: left;float: left;width: 25%">
-
+			<div style="text-align: left;float: left;{% if REACTIONS_ENABLE_TRAFFIC_LIGHT %}width: 25%;{% endif %}">
 				<ul style="list-style: none;">
 					<li><i class="icon fa fa-smile-o icon-green" aria-hidden="true"></i>
 				    	<span data-pos-user="{{ postrow.POSTER_ID }}" class="traffic_light_go_color">{{ USER_REACTIONS_POS }}</span>
@@ -26,7 +25,7 @@
 			</div>
 			{% endif %}
 
-			<div style="{% if REACTIONS_ENABLE_TRAFFIC_LIGHT %}width: 75%;{% endif %}float: right;">
+			<div style="{% if REACTIONS_ENABLE_TRAFFIC_LIGHT %}width: 75%;float: right;{% endif %}">
 				<div class="clear" style="margin-bottom: 10px;"></div>
 
 				<ul style="list-style: none;">
