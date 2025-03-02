@@ -158,7 +158,7 @@ class acp_controller
 
 		$this->type_operator->tpr_common_vars([
 			'REACTIONS_ENABLED'				=> $this->reactions_enabled,
-			'TL_DISABLED'					=> $available,
+			//'TL_DISABLED'					=> $available,
 			'S_ERROR'						=> isset($error) ? $error : '',
 			'S_SETTINGS_MODE'				=> true,
 			'S_REACTIONS_STYLESHEET'		=> true,
