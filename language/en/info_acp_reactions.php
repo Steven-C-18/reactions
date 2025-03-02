@@ -22,7 +22,10 @@ if (empty($lang) || !is_array($lang))
 //sorted via html layout not a-z.
 $lang = array_merge($lang, [
 //Top
-	'ACP_TPR_DONATE'					=> 'Donate',
+	'ACP_STEVE_DONATE'					=> 'Donate',
+	'ACP_STEVE_HELP'					=> 'Get Help',
+	'ACP_STEVE_EXTENSIONS'				=> 'Extensions',
+	
 	'ACP_REACTIONS_SETTINGS'			=> 'Settings',
 	'ACP_REACTIONS_VERSION'				=> 'Version: ',
 	'ACP_REACTIONS_SETTINGS_EXPLAIN'	=> 'Here you can adjust the general settings for the Reactions extension.',
