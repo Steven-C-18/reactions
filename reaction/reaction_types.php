@@ -367,7 +367,7 @@ class reaction_types
 	{
 		if (empty($count))
 		{
-			return (int) 0;
+			return intval(0);
 		}
 
 		switch ($count) {

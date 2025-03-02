@@ -21,13 +21,11 @@
 				   	 	<span data-neg-user="{{ postrow.POSTER_ID }}" class="traffic_light_stop_color">{{ USER_REACTIONS_NEG }}</span>
 					</li>
 				</ul>
-
 			</div>
 			{% endif %}
 
 			<div style="{% if REACTIONS_ENABLE_TRAFFIC_LIGHT %}width: 75%;float: right;{% endif %}">
 				<div class="clear" style="margin-bottom: 10px;"></div>
-
 				<ul style="list-style: none;">
 				{% for recieved_reactions in loops.recieved_reactions %}
 					<li style="float: left;padding: 10px;">
@@ -38,7 +36,6 @@
 					</li>
 				{% endfor %}
 				</ul>
-
 				</div>
 			</div>
 		</div>

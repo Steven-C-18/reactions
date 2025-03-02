@@ -1,21 +1,18 @@
 /**
-	* Topic/Post Reactions $extends the phpBB Software package.
-	* @copyright (c) 2024, Steve, https://phpbb3bbcodes.com/viewforum.php?f=66
+	* Reactions $extends the phpBB Software package.
+	* @copyright (c) 2024, Steve, https://steven-clark.tech/
 	* @license GNU General Public License, version 2 (GPL-2.0)
- */
+*/
 
-.centered {
-	text-align: center;
-}
+.centered { text-align: center; }
 
 .reactions {
 	margin-top: 5px;
 	padding: 3px 0;
 }
 
-.reaction_count {
-	border-radius: 5px !important;
-}
+.reaction_count { border-radius: 5px !important; }
+
 .reaction-avatar img {
 	max-height: 30px;
 	vertical-align: middle;
@@ -30,9 +27,7 @@
 	text-align: center;
 }
 
-.reaction_disabled, .reaction_delete {
-	background-color: #ECD5D8 !important;
-}
+.reaction_disabled, .reaction_delete { background-color: #ECD5D8 !important; }
 
 .reaction-ear {
 	border-radius: 5px;
@@ -54,9 +49,8 @@
 	background: #E72F6D;
 	color: #fff;
 }
-.reaction_enabled {
-	background-color: #80FF40 !important;
-}
+
+.reaction_enabled { background-color: #80FF40 !important; }
 
 .reaction-image-pages {
 	width: 35px;
@@ -80,13 +74,13 @@ img.reaction-notification {
 	height: 40px;
 }
 
-.reaction_inner {
-	background-color: #F9F9F9 !important;
-}
+.reaction_inner { background-color: #F9F9F9 !important; }
+
 .reaction-image-left {
 	float: left;
 	margin-right: 5px;
 }
+
 .user_alert {
 	padding-bottom: 1px;
 	border-bottom: 2px dashed #D31141;
@@ -106,9 +100,7 @@ img.reaction-notification {
 	color: #fff;
 }
 
-.icon-tpr-resync {
-	padding: 0 1px 0 2px;
-}
+.icon-tpr-resync { padding: 0 1px 0 2px; }
 
 .tpr-font, .tpr-font:active a, .tpr-font:hover a, .tpr-font a {
 	font-size: 12px;
@@ -121,20 +113,10 @@ img.reaction-notification {
 	float: right;
 }
 
-.has-profile .post-buttons .tpr-button{
-	right: 70px !important;
-}
-.traffic_light_go_color {
-	color:  #1b9a1b;
-}
-
-.traffic_light_amber_color {
-	color: orange;
-}
-
-.traffic_light_stop_color {
-	color: #bc2a4d;
-}
+.has-profile .post-buttons .tpr-button{ right: 70px !important; }
+.traffic_light_go_color { color:  #1b9a1b; }
+.traffic_light_amber_color { color: orange; }
+.traffic_light_stop_color { color: #bc2a4d; }
 
 .traffic_light_go {
 	border-bottom: solid 2px #1b9a1b;
@@ -168,34 +150,8 @@ img.reaction-notification {
 }
 
 /* Responsive == this old review and test in 0.9.4
-* Go ahead "block" me now 
 */ 
-@media (max-width: 320px) {
-	.reaction-button-show { display: block !important; }
-}
-@media (max-width: 350px) {
-	.reaction-button-show { display: block !important; }
-}
-@media (max-width: 430px) {
-	.reaction-button-show { display: block !important; }	
-}
-@media (max-width: 500px) {
-	.reaction-button-show { display: block !important; }
-}
-@media (max-width: 550px) {
-	.reaction-button-show { display: block !important; }
-}
 @media (max-width: 700px) {
-	.reaction-button-show { display: block !important; }
-}
-@media (min-width: 700px) {
-	.reaction-button-show { display: block !important; }
-}
-@media (min-width: 701px) and (max-width: 950px) {	
-	.reaction-button-show { display: block !important; }
-}
-
-@media (max-width: 430px) {
 	.reaction_image {
 		width: 25px !important;
 		height: 25px !important;
