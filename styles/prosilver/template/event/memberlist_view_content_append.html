@@ -1,6 +1,7 @@
 
 <div id="reactions_memberlist">
 
+	{% if RECENT_REACTIONS %}
 	<div class="column1">
 		<div id="user_reactions" class="panel bg1" style="text-align: center;">
 			<div class="inner">
@@ -43,7 +44,8 @@
 			</div>
 		</div>
 	</div>
-
+	{% endif %}
+	
 	{% if loops.reactions|length %}
 	<div class="column2">
 		<div class="panel bg1" style="text-align: center;">
