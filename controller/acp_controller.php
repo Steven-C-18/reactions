@@ -221,7 +221,14 @@ class acp_controller
 					'reaction_type_traffic_light'	=> (int) $data['reaction_type_traffic_light'],
 					'reaction_type_title'			=> (string) $data['reaction_type_title'],
 				];
-
+				
+				if ($this->action == 'add')
+				{
+					$sql_ary += [
+						'reaction_type_order_id'	=> (int) 1,
+					];					
+				}
+				
 				switch ($this->action) 
 				{
 					case $this->action == 'add':
@@ -393,7 +400,7 @@ class acp_controller
 
 		return $this->resync->resync_traffic_light($reaction_id, $this->u_action, $traffic_light);
 	}
-
+	// no order is set when new reation type is added
 	public function move_up_down()
 	{
 		if (!check_link_hash($this->request->variable('hash', ''), 'acp_reactions') || !$this->reaction_type_id)
