@@ -106,8 +106,8 @@ class acp_controller
 	
 	public function reaction_settings()
 	{
-		//$image_path = $this->request->variable('reactions_image_path', '', true);
-		//$image_path = trim($image_path, "/");
+		$image_path = $this->request->variable('reactions_image_path', '', true);
+		$image_path = trim($image_path, "/");
 		if (!@is_dir($this->type_operator->reactions_image_path()))
 		{	
 			$error = $this->language->lang('ACP_REACTION_PATH_NOT_DIR', $this->config['reactions_image_path']);
@@ -136,7 +136,7 @@ class acp_controller
 				
 			$this->config->set('reactions_enable_traffic_light',  $this->request->variable('reactions_enable_traffic_light', false));
 
-			//$this->config->set('reactions_image_path', $image_path);
+			$this->config->set('reactions_image_path', $image_path);
 			$this->config->set('reaction_image_height', $this->request->variable('reaction_image_height', 0));
 			$this->config->set('reaction_image_width', $this->request->variable('reaction_image_width', 0));
 			$this->config->set('reactions_dropdown_width', $this->request->variable('reactions_dropdown_width', 0));
