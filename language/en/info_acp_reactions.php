@@ -21,6 +21,9 @@ if (empty($lang) || !is_array($lang))
 }
 //sorted via html layout not a-z.
 $lang = array_merge($lang, [
+//recent 
+	'ACP_NO_REACTION_TYPE_TRAFFIC_LIGHT_SELECTED'	=> 'Please select an option for the Reaction type',
+
 //Top
 	'ACP_STEVE_DONATE'					=> 'Donate',
 	'ACP_STEVE_HELP'					=> 'Get Help',

@@ -212,7 +212,10 @@ class acp_controller
 			{
 				$error = $this->language->lang('ACP_NO_REACTION_IMAGE_SELECTED');
 			}
-			
+			if (empty($data['reaction_type_traffic_light']))
+			{
+				$error = $this->language->lang('ACP_NO_REACTION_TYPE_TRAFFIC_LIGHT_SELECTED');
+			}			
 			if (!isset($error))
 			{
 				$sql_ary = [
@@ -491,7 +494,7 @@ class acp_controller
 		}
 		$this->db->sql_freeresult($result);
 
-		return (bool) $this->db->sql_affectedrows();
+		return $this;
 	}
 
 	private function response($data = [])
