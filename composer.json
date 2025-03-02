@@ -1,0 +1,32 @@
+{
+    "name": "steve/reactions",
+    "type": "phpbb-extension",
+    "description": "Allows Users to add image Reactions to posts, topics, PMs and extensions when used.",
+    "homepage": "https://www.steven-clark.tech/",
+    "version": "0.9.3-dev",
+    "time": "2025-02-26",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Steven Clark",
+            "email": "steveniclark@outlook.com",
+            "homepage": "https://www.steven-clark.tech/",
+            "role": "Author/Developer"
+        }
+    ],
+    "require": {
+        "php": ">= 8.0"
+    },
+    "extra": {
+        "display-name": "Reactions",
+        "soft-require": {
+            "phpbb/phpbb": " >= 3.3.14"
+        },
+        "version-check": {
+            "host": "www.steven-clark.tech",
+            "directory": "/version_check",
+            "filename": "reactions_version.json",
+            "ssl": true
+        }
+    }
+}

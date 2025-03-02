@@ -1,0 +1,47 @@
+
+                {% if not REACTIONS_BUTTON_TOP %}
+                <ul style="float: right;margin-left: 10px;margin-right: -10px;">
+                {% endif %}
+                    {% if postrow.reaction_types|length && postrow.S_POSTER_ADD && postrow.S_POST_REACTION_ENABLE %}
+                        <li class="reaction-button-show" data-skip-responsive="true">
+                            <div class="dropdown-container dropdown-button-control" id="tpr-dropdown{{ postrow.POST_ID }}">
+                                <span title="{{ lang('ADD_REACTION') }}" class="button button-secondary dropdown-trigger">
+                                    <i class="icon {{ REACTIONS_BUTTON_ICON }} fa-fw"></i>
+                                </span>
+                                <div class="dropdown" style="width: {% if REACTIONS_DROPDOWN_WIDTH %}{{ REACTIONS_DROPDOWN_WIDTH }}{% endif %}px;">
+                                    {#<div class="pointer"><div class="pointer-inner"></div></div>#}
+                                    <ul class="dropdown-contents contact-icons" id="ltpr-{{ postrow.POST_ID }}">
+                                        <li>
+                                        {% for reaction_types in postrow.reaction_types %}
+                                            {% if reaction_types.IMAGE_SRC && not reaction_types.CHECKED %}
+                                            <a href="{{ reaction_types.U_REACTION_ADD }}" class="add-reaction-input" data-add-reaction="true">
+                                                <img src="{{ reaction_types.IMAGE_SRC }}" {% if reaction_types.RTT_LIGHT %}class="{{ reaction_types.RTT_LIGHT }}"{% endif %} {% if REACTION_IMAGE_HEIGHT %}style="height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %} alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" />
+                                            </a>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                        </li>
+                                    </ul>
+                                    {% if postrow.U_REACTION_DELETE || postrow.S_REFRESH && postrow.U_RESYNC %}
+                                        <ul class="dropdown-contents contact-icons" style="font-size: 11px">
+                                            <li id="delete-button{{ postrow.POST_ID }}" {% if not postrow.U_REACTION_DELETE %}style="display: none;"{% endif %}>
+                                                <a id="delete-reaction{{ postrow.POST_ID }}" href="{{ postrow.U_REACTION_DELETE }}" data-delete-reaction="true" title="{{ lang('DELETE_REACTION') }}">
+                                                    {{ lang('DELETE') }} <i class="icon fa-times icon-red fa-fw"></i>
+                                                </a>
+                                            </li>
+                                        {% if postrow.S_REFRESH && postrow.U_RESYNC %}
+                                            <li>
+                                                <a id="tpr-refresh-{{ postrow.POST_ID }}" href="{{ postrow.U_RESYNC }}" title="{{ lang('RESYNC_REACTIONS') }}">
+                                                    {{ lang('REACTION_RESYNC') }} <i class="icon {% if postrow.REFRESH %}fa-spin{% endif %} fa-refresh icon-green fa-fw"></i>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+				{% if not REACTIONS_BUTTON_TOP %}
+                </ul>
+				{% endif %}

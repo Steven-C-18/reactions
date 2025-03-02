@@ -1,0 +1,10 @@
+			{% if index_topics.reactions %}
+				<div class="reaction-panel">
+				{% if index_topics.R_COUNT %}<span class="badge reaction-count">{{ index_topics.R_COUNT }}</span>{% endif %}
+				{% for reaction in index_topics.reactions %}
+					<a href="{{ reaction.U_VIEW_LIST }}" onclick="reactions(this.href);return false;" title="{{ lang('VIEW_REACTIONS') }}">
+						<img src="{{ reaction.IMAGE_SRC }}" title="{{ reaction.COUNT }}" alt="{{ lang('IMAGE') }}" class="emoji" />
+					</a>
+					{% endfor %}
+				</div>
+			{% endif %}

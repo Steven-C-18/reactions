@@ -1,0 +1,97 @@
+imports:
+    - { resource: debug.yml }
+    - { resource: listeners.yml }
+    - { resource: notification.yml }
+    - { resource: reactions.yml }
+    - { resource: tables.yml }
+
+services:
+    steve.reactions.acp_controller:
+        class: steve\reactions\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@log'
+            - '@pagination'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@steve.reactions.delete_reactions'
+            - '@steve.reactions.reaction_types'
+            - '@steve.reactions.resync_reaction'
+            - '%steve.reactions.tables.reactions_table%'
+            - '%steve.reactions.tables.reaction_types_table%'
+
+    steve.reactions.ucp_controller:
+        class: steve\reactions\controller\ucp_controller
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@steve.reactions.reaction_types'
+
+    steve.reactions.add_reaction:
+        class: steve\reactions\controller\add_reaction
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@notification_manager'
+            - '@request'
+            - '@user'
+            - '@steve.reactions.reaction_traffic_light'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+
+    steve.reactions.delete_reaction:
+        class: steve\reactions\controller\delete_reaction
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@notification_manager'
+            - '@request'
+            - '@user'
+            - '@steve.reactions.reaction_traffic_light'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+
+    steve.reactions.controller_page:
+        class: steve\reactions\controller\reaction_pages
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@pagination'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+
+    steve.reactions.resync_reaction:
+        class: steve\reactions\controller\resync_reactions
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+            - '@steve.reactions.reaction_traffic_light'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'

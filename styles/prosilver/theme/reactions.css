@@ -1,0 +1,192 @@
+/**
+	* Topic/Post Reactions $extends the phpBB Software package.
+	* @copyright (c) 2024, Steve, https://phpbb3bbcodes.com/viewforum.php?f=66
+	* @license GNU General Public License, version 2 (GPL-2.0)
+ */
+
+.centered {
+	text-align: center;
+}
+
+.reactions {
+	margin-top: 5px;
+	padding: 3px 0;
+}
+
+.reaction-avatar img {
+	max-height: 30px;
+	vertical-align: middle;
+	width: auto;
+	margin-left: 5px;
+}
+
+.reaction_disabled, .reaction_enabled {
+	margin: 2px;
+	border-radius: 10px;
+	padding: 5px 7px;
+	text-align: center;
+}
+
+.reaction_disabled, .reaction_delete {
+	background-color: #ECD5D8 !important;
+}
+
+.reaction-ear {
+	border-radius: 5px;
+	opacity: 0.8;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 10px;
+	line-height: 1;
+	float: right;
+	display: inline-block;
+	margin-left: -5px;
+	vertical-align: baseline;
+	position: relative;
+	top: 3px;
+	padding: 4px 6px;
+}
+
+.reaction-ear-color {
+	background: #E72F6D;
+	color: #fff;
+}
+.reaction_enabled {
+	background-color: #80FF40 !important;
+}
+
+.reaction-image-pages {
+	width: 35px;
+	height: 35px;
+	vertical-align: middle;
+	padding: 3px;
+}
+
+img.reaction-notification {
+	max-width: 30px !important;
+	max-height: 30px !important;
+}
+
+.reaction_image {
+	vertical-align: middle;
+	float: right;
+}
+
+.reaction_image_size, .reaction_image_select {
+	width: 40px;
+	height: 40px;
+}
+
+.reaction_inner {
+	background-color: #F9F9F9 !important;
+}
+.reaction-image-left {
+	float: left;
+	margin-right: 5px;
+}
+.user_alert {
+	padding-bottom: 1px;
+	border-bottom: 2px dashed #D31141;
+	margin-bottom: 2px;
+	float: right;
+}
+
+.resync {
+	padding: 2px 1px 3px 3px;
+	margin-top: 2px;
+}
+
+.icon-tpr {
+	padding: 3px;
+	margin: 0 1px 0 2px;
+	float: right;
+	color: #fff;
+}
+
+.icon-tpr-resync {
+	padding: 0 1px 0 2px;
+}
+
+.tpr-font, .tpr-font:active a, .tpr-font:hover a, .tpr-font a {
+	font-size: 12px;
+	color: #fff;
+}
+
+.user_alert_new {
+	padding-bottom: 1px;
+	float: right;
+}
+
+.has-profile .post-buttons .tpr-button{
+	right: 70px !important;
+}
+
+.traffic_light_go {
+	border-bottom: solid 2px #1b9a1b;
+ 	padding-bottom: 3px;
+}
+
+.traffic_light_amber {
+	border-bottom: solid 2px orange;
+ 	padding-bottom: 3px;
+}
+
+.traffic_light_stop {
+ 	border-bottom: solid 2px #bc2a4d;
+ 	padding-bottom: 3px;
+ 	/*
+ 	 	border-radius:  50%;
+ 	padding: 5px; */
+}
+/*  network */
+.reaction-panel {
+	background: #fff;
+	float: right;
+	border-radius: 3px;
+	margin-top: -5px;
+	padding: 3px;	
+}
+.badge.reaction-count {
+	margin-top: -9px !important;
+	margin-right: -12px !important;
+	border-radius: 25% !important;
+}
+
+/* Responsive == this old review and test in 0.9.4
+* Go ahead "block" me now 
+*/ 
+@media (max-width: 320px) {
+	.reaction-button-show { display: block !important; }
+}
+@media (max-width: 350px) {
+	.reaction-button-show { display: block !important; }
+}
+@media (max-width: 430px) {
+	.reaction-button-show { display: block !important; }	
+}
+@media (max-width: 500px) {
+	.reaction-button-show { display: block !important; }
+}
+@media (max-width: 550px) {
+	.reaction-button-show { display: block !important; }
+}
+@media (max-width: 700px) {
+	.reaction-button-show { display: block !important; }
+}
+@media (min-width: 700px) {
+	.reaction-button-show { display: block !important; }
+}
+@media (min-width: 701px) and (max-width: 950px) {	
+	.reaction-button-show { display: block !important; }
+}
+
+@media (max-width: 430px) {
+	.reaction_image {
+		width: 25px !important;
+		height: 25px !important;
+	}
+	.reaction_image_select {
+		width: 30px !important;
+		height: 30px !important;
+	}
+}
