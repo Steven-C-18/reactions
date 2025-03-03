@@ -247,7 +247,7 @@ class reaction_traffic_light
 	{
 		if (empty($total))
 		{
-			return false;
+			return (int) 0;
 		}
 
 		$division = $count / $total;

@@ -57,8 +57,8 @@ $lang = array_merge($lang, [
 	'REACTION_PERCENT'				=> '%',
 
 //Errors
-	'NOT_AUTHORISED_REACTIONS'			=> 'You are not authorised to view topic/post Reactions.',
-	'NOTIFICATION_TYPE_STEVE_REACTION' 	=> 'Someone Reacts to your topic/post',
+	'NOT_AUTHORISED_REACTIONS'			=> 'You are not authorised to view Reactions.',
+	'NOTIFICATION_TYPE_STEVE_REACTION' 	=> 'Someone Reacts to you',
 	'REACTIONS_DISABLED'				=> 'This Reactions page is currently disabled',
 	'REACTIONS_DISABLED_USER'			=> 'This Reaction can not be displayed as the user may have disabled reactions or no longer has permissions.',
 	'REACTIONS_NOT_FOUND'				=> 'An <strong>Error</strong> has occurred',//?
@@ -67,12 +67,13 @@ $lang = array_merge($lang, [
 
 	//quick reply.
 	'TOO_FEW_CHARS'					=> 'Your message contains too few characters.',
-/* 	
-	'USER_REACTION'	=> array(
+
+	'USER_REACTION'	=> [
+		0 => 'Reactions',
 		1 => 'Reaction',
 		2 => 'Reactions',
-	),
-*/	
+	],
+
 	'REACTIONS_GIVEN'				=> 'Given Reactions',
 	'REACTIONS_RECIEVED'			=> 'Received Reactions',
 	'HR_RECENT_REACTIONS'			=> 'Recent Reactions',

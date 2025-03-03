@@ -109,11 +109,6 @@ class reaction extends \phpbb\notification\type\base
 
 	public function get_email_template_variables()
 	{
-		if (empty($this->config['reaction_notifications_emails_enabled']))
-		{
-			return false;
-		}
-		
 		$post_id = $this->get_data('post_id');
 		$post_url = generate_board_url() . '/' . "viewtopic.{$this->php_ext}?p=$post_id#p$post_id";
 		$user_data = $this->user_loader->get_username($this->get_data('user_id'), 'username');

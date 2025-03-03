@@ -46,7 +46,7 @@ class m1_tp_reactions extends \phpbb\db\migration\migration
 			['config.add', ['reactions_resync_time', 1]],
 			['config.add', ['reactions_old_file', '']],
 			['config.add', ['reactions_total', 0]],
-			['config.add', ['reactions_dropdown_width', 250]],
+			['config.add', ['reactions_dropdown_width', 215]],
 			['config.add', ['reactions_button_icon', 'fa-smile-o']],
 			
 			['config.add', ['reaction_type_count_enable', true]],			

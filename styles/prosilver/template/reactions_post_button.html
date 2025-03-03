@@ -24,7 +24,7 @@
                                     </ul>
                                     {% if postrow.U_REACTION_DELETE || postrow.S_REFRESH && postrow.U_RESYNC %}
                                         <ul class="dropdown-contents contact-icons" style="font-size: 11px">
-                                            <li id="delete-button{{ postrow.POST_ID }}" {% if not postrow.U_REACTION_DELETE %}class="hidden"{% endif %}>
+                                            <li id="delete-button{{ postrow.POST_ID }}" {% if not postrow.U_REACTION_DELETE %}style="display: none;"{% endif %}>
                                                 <a id="delete-reaction{{ postrow.POST_ID }}" href="{{ postrow.U_REACTION_DELETE }}" data-delete-reaction="true" title="{{ lang('DELETE_REACTION') }}">
                                                     {{ lang('DELETE') }} <i class="icon fa-times icon-red fa-fw"></i>
                                                 </a>
