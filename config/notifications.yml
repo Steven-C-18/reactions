@@ -1,0 +1,11 @@
+services:
+    steve.reactions.notification.type.post_reaction:
+        class: steve\reactions\notification\type\post_reaction
+        shared: false # service MUST not be shared for this to work!
+        parent: notification.type.base
+        calls:
+            - [set_config, ['@config']]
+            - [set_user_loader, ['@user_loader']]
+            - [set_controller_helper, ['@controller.helper']]
+        tags:
+            - { name: notification.type }

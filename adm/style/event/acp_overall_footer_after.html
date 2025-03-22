@@ -1,0 +1,10 @@
+{% if S_SETTINGS_MODE or U_ADD_REACTION %}
+<!-- change to jquery -->
+<script>
+	function update_image(newimage) {
+		document.getElementById('image').src = (newimage) ? "{{ REACTION_PATHS }}" + encodeURI(newimage) : "";
+	}
+</script>
+{% INCLUDEJS '@steve_reactions/js/ajax_reactions.js' %}
+{% INCLUDEJS '@steve_reactions/js/jquery.minicolors.js' %}
+{% endif %}

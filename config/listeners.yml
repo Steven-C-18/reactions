@@ -1,0 +1,65 @@
+services:
+    steve.reactions.acp_listener:
+        class: steve\reactions\event\acp_listener
+        arguments:
+            - '@request'
+            - '@steve.reactions.reaction_types'
+        tags:
+            - { name: event.listener }
+
+    steve.reactions.general_listener:
+        class: steve\reactions\event\general_listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@controller.helper'
+            - '@language'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+        tags:
+            - { name: event.listener }
+
+    steve.reactions.posting_listener:
+        class: steve\reactions\event\posting_listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@notification_manager'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@steve.reactions.delete_reactions'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+        tags:
+            - { name: event.listener }
+
+    steve.reactions.user_listener:
+        class: steve\reactions\event\user_listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@user'
+            - '@steve.reactions.delete_reactions'
+            - '@steve.reactions.user_reactions'
+            - '%steve.reactions.tables.reactions_table%'
+        tags:
+            - { name: event.listener }
+
+    steve.reactions.viewtopic_listener:
+        class: steve\reactions\event\viewtopic_listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@template_context'
+            - '@template'
+            - '@user'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+        tags:
+            - { name: event.listener }

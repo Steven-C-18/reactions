@@ -1,0 +1,6 @@
+parameters:
+    debug.load_time: true
+    debug.sql_explain: true
+    debug.memory: true
+    debug.show_errors: true
+    debug.exceptions: true
