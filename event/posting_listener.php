@@ -5,10 +5,6 @@
 	* @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-/**
-	* this file scares me
-*/
-
 namespace steve\reactions\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -68,13 +64,13 @@ class posting_listener implements EventSubscriberInterface
 	{
  		$post_data = $event['post_data'];
 		
-		$marked_ary	= array_keys($this->request->variable('reaction_type_id', array(0)));
+		$marked_ary	= array_keys($this->request->variable('reaction_type_id', [0]));
 		$marked = implode('|', $marked_ary);
 		$s_new_message = ($event['mode'] == 'post' || ($event['mode'] == 'edit' && isset($post_data['topic_first_post_id']) == $event['post_id']));
 		
 		$post_data = array_merge($post_data, [
 			'post_enable_reactions' 		=> $this->request->variable('enable_post_reactions', false),
-			'topic_enable_reactions' 		=> ($s_new_message) ? $this->request->variable('enable_topic_reactions', false) : $event['post_data']['topic_enable_reactions'],
+			'topic_enable_reactions' 		=> $s_new_message ? $this->request->variable('enable_topic_reactions', false) : $event['post_data']['topic_enable_reactions'],
 			'post_disabled_reaction_ids'	=> $marked,
 		]);
 		
@@ -183,11 +179,7 @@ class posting_listener implements EventSubscriberInterface
 		$event['data'] = $data;
 		$event['sql_data'] = $sql_data;
 	}
-/*
 
-	* we can work on this tomatoe 
-
-*/	
 	public function tpr_reaction_delete_posts($event)
 	{
 		foreach ($event['poster_ids'] as $poster_id)

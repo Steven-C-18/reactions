@@ -1,5 +1,4 @@
 imports:
-    #- { resource: debug.yml }
     - { resource: listeners.yml }
     - { resource: notifications.yml }
     - { resource: reactions.yml }

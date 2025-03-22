@@ -42,18 +42,14 @@ class acp_listener implements EventSubscriberInterface
 			'u_view_reactions' 				=> ['lang' => 'ACL_U_VIEW_REACTIONS', 				'cat' => 'reactions'],
 			'u_view_reactions_pages' 		=> ['lang' => 'ACL_U_VIEW_REACTIONS_PAGE', 			'cat' => 'reactions'],
 			'u_view_post_reactions_page'	=> ['lang' => 'ACL_U_VIEW_POST_REACTIONS_PAGE',		'cat' => 'reactions'],
-			
 			'u_add_reactions' 				=> ['lang' => 'ACL_U_ADD_REACTIONS', 				'cat' => 'reactions'],
 			'u_change_reactions' 			=> ['lang' => 'ACL_U_CHANGE_REACTIONS', 			'cat' => 'reactions'],			
 			'u_delete_reactions'	 		=> ['lang' => 'ACL_U_DELETE_REACTIONS', 			'cat' => 'reactions'],
 			'u_resync_reactions'			=> ['lang' => 'ACL_U_RESYNC_REACTIONS',				'cat' => 'reactions'],
-
 			'u_disable_reactions'			=> ['lang' => 'ACL_U_DISABLE_REACTIONS', 			'cat' => 'reactions'],
-			
 			'u_disable_post_reactions' 		=> ['lang' => 'ACL_U_DISABLE_POST_REACTIONS', 		'cat' => 'reactions'],
 			'u_disable_topic_reactions' 	=> ['lang' => 'ACL_U_DISABLE_TOPIC_REACTIONS', 		'cat' => 'reactions'],
 			'u_disable_reaction_types'		=> ['lang' => 'ACL_U_DISABLE_REACTION_TYPES', 		'cat' => 'reactions'],
-			
 			'u_manage_reactions_settings'	=> ['lang' => 'ACL_U_MANAGE_REACTIONS_SETTINGS',	'cat' => 'reactions'],
 		];
 
