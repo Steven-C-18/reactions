@@ -88,7 +88,6 @@ $lang = array_merge($lang, [
 	'USER_REACTIONS'				=> 'Reactions %d',
 	'VIEW_REACTIONS'				=> 'View Reactions',	
 	'VIEWING_REACTIONS'				=> 'Viewing Reactions page',
-	// 1 there, their
 	'WELCOME_REACTIONS_PAGE'		=> 'Welcome %1$s, <br>  &nbsp  &nbsp  &nbsp  &nbsp  A total of <strong>%2$s</strong> registered users have received Reactions, you can click on the <strong>“Reaction Image”</strong> to view the received Reaction list.',
 
 	//pre populated reactions

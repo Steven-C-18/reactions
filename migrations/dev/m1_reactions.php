@@ -51,7 +51,7 @@ class m1_reactions extends \phpbb\db\migration\migration
 			
 			['config.add', ['reactions_dropdown_width', 215]],
 			['config.add', ['reactions_button_icon', 'fa-smile-o']],
-			['config.add', ['reactions_button_color', '8c8c8c']],
+			['config.add', ['reactions_button_color', '6b5f5f']],
 			['config.add', ['reactions_button_top', true]],
 			
 			['permission.add', ['u_add_reactions']],

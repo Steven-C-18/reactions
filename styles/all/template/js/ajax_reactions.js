@@ -76,7 +76,6 @@ $.extend($reactions, {
 			break;
 		}
 	},
-	// note; postId: this will only be avaiable in a shop that sells stamps...?
 	types: (jsonData, postId) => {
 		$.each(JSON.parse(jsonData.TYPE_DATA), (index, json) => {
 			$reactions.count(json.count, postId);
@@ -150,10 +149,9 @@ $.extend($reactions, {
 				if (json.has_id == false) { $('#reacted-user-' + json.user_id).prepend(reactionImage) }
 			}
 		});
-		/* this is just a note to add this back */
+		/* this is just a note to add this back at some point */
 		//if (load_more == false) { $('#reaction-type-top').append(reactionImage); }
 	},
-	/* we could obscure like blur */
 	get: (data, url, page, before, always) => {
 		try {
 			$.ajax({
@@ -163,11 +161,10 @@ $.extend($reactions, {
 				beforeSend: before,
 				data: 'page=' + page,
 				success: data,
-				error: phpbb.jqXHR,//.fail((jqXHR, textStatus, errorThrown) => { error })
+				error: phpbb.jqXHR,
 				cache: false
 			}).always(always);
-		} catch (e) { }//do summit 
-	    return false;
+		} catch (e) { return false }
 	}
 });
 var data = null;
@@ -214,7 +211,7 @@ $("#load-more-reacted").bind("click", function(e) {
 });
 $(".close-more-reacted").click((e) => {
 	e.preventDefault();
-	$('#show-reacted, .darkenwrapper, #load-more-done').hide();
+	$('#show-reacted, #load-more-done, .darkenwrapper').hide();
 	$("#load-more-reacted").attr('href', '').show();
 	$('#load-reacted-user, #reaction-type-top').empty();
 	start = 0;
@@ -225,11 +222,11 @@ $('#reactions_button_icon').on('keyup blur', function() {
 if (typeof rData !== 'undefined') {
 	$(() => {
 		if (rData.viewtopic) { setTimeout(() => { $('div[id^=reaction-dropdown-]').hide() }, rData.sessionTime * $ms ) }
+		if (rData.quickReply !== '') {
+			$('form#qr_postform').find('input[type=submit][name=post]').click(() => {
+				$('form#qr_postform').attr('action', (i, val) => { return val + '&' + rData.quickReply; });
+			});
+		}
 	});
-	if (rData.quickReply !== '') {
-		$('form#qr_postform').find('input[type=submit][name=post]').click(() => {
-			$('form#qr_postform').attr('action', (i, val) => { return val + '&' + rData.quickReply; });
-		});
-	}	
 }
 })(jQuery);
