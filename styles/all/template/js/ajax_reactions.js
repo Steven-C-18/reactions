@@ -186,7 +186,7 @@ $("[data-delete-reaction]").bind("click", function(e) {
 		$reactions.changeCountViewtopic(res);
     }, $(this).attr('href'), 0, $reactions.before(), $reactions.always());
 });
-var inc = (typeof rData !== 'undefined') ? parseInt(rData.perPage) : 0, start = 0;
+var inc = (typeof rData !== 'undefined') ? parseInt(rData.perPage) : 10, start = 0;
 $('div[id^=post-reactions]').on('click', '.data-show-reactions', function(e) {
 	e.preventDefault();
  	$('#show-reacted, .darkenwrapper').show();

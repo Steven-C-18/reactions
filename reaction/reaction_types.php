@@ -464,7 +464,7 @@ class reaction_types
 
 		return $this;
 	}
-//should be in another file. possible constants
+	// this should be in another file core_vars
 	public function tpr_common_vars($new_vars = [])
 	{
 		$template_vars = [

@@ -29,7 +29,7 @@ class main_module
 
 		$acp_controller->get_acp_data($id, $mode, $this->request->variable('action', ''), $this->u_action);
 		
-		//$acp_controller->get_acp_switch
+		//$acp_controller->get_acp_switch($mode, $this->page_title, $this->tpl_name
 		switch ($mode)
 		{
 			case 'settings':

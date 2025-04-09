@@ -7,6 +7,9 @@
 
 namespace steve\reactions\reaction;
 
+/* used in two files 
+new \steve\reactions\reaction\constants
+*/
 class constants
 {
 	const TPR_BATCH = 100;
