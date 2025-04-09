@@ -4,14 +4,14 @@
     "description": "Allows Users to add image Reactions to posts",
     "homepage": "https://www.steven-clark.tech/",
     "version": "0.9.6-dev",
-    "time": "2025-22-03",
+    "time": "2025-09-04-03",
     "license": "GPL-2.0",
     "authors": [
         {
             "name": "Steven Clark",
             "email": "steveniclark@outlook.com",
             "homepage": "https://www.steven-clark.tech/",
-            "role": "Author/Developer"
+            "role": "Author / Developer"
         }
     ],
     "require": {
