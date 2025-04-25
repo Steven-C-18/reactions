@@ -7,7 +7,7 @@
  
 //namespace steve\reactions\migrations\v1;
 
-class v100_reactions extends \phpbb\db\migration\migration
+/*class v100_reactions extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
@@ -22,4 +22,4 @@ class v100_reactions extends \phpbb\db\migration\migration
 	public function update_data()
 	{	
 	}
-}
+}*/
