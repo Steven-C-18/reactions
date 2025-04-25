@@ -3,8 +3,8 @@
     "type": "phpbb-extension",
     "description": "Allows Users to add image Reactions to posts",
     "homepage": "https://www.steven-clark.tech/",
-    "version": "0.9.6-dev",
-    "time": "2025-09-04-03",
+    "version": "0.9.7-dev",
+    "time": "2025-25-04",
     "license": "GPL-2.0",
     "authors": [
         {
