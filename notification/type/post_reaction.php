@@ -100,7 +100,7 @@ class post_reaction extends \phpbb\notification\type\base
 			return false;
 		}
 		
-		return '@steve_reactions/post_reation';
+		return '@steve_reactions/post_reaction';
 	}
 
 	public function get_email_template_variables()
