@@ -1,0 +1,11 @@
+{% if S_SETTINGS_MODE %}
+<script>
+(($) => { 
+'use strict';
+	$('#reactions_button_icon').on('keyup blur', function() {
+		$('#button_icon, #button_icon_top').prop('class', 'icon ' + $(this).val());
+	});
+})(jQuery);
+</script>
+{% INCLUDEJS '@steve_reactions/js/jquery.minicolors.js' %}
+{% endif %}

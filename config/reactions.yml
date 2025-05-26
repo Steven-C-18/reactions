@@ -1,0 +1,65 @@
+services:
+    steve.reactions.delete_reactions:
+        class: steve\reactions\reaction\delete_reactions
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@notification_manager'
+            - '@template'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+            - '%steve.reactions.tables.reaction_types_table%'
+
+    steve.reactions.reaction_types:
+        class: steve\reactions\reaction\reaction_types
+        arguments:
+            - '@auth'
+            - '@cache.driver'
+            - '@config'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@language'
+            - '@template'
+            - '@path_helper'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+            - '%steve.reactions.tables.reactions_table%'
+            - '%steve.reactions.tables.reaction_types_table%'
+
+    steve.reactions.resync_reaction:
+        class: steve\reactions\reaction\resync_reactions
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'
+
+    steve.reactions.topic_reactions:
+        class: steve\reactions\reaction\topic_reactions
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dispatcher'
+            - '@template'
+            - '@steve.reactions.reaction_types'
+
+    steve.reactions.user_reactions:
+        class: steve\reactions\reaction\user_reactions
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@controller.helper'
+            - '@dbal.conn'
+            - '@language'
+            - '@template'
+            - '@user'
+            - '@steve.reactions.reaction_types'
+            - '%steve.reactions.tables.reactions_table%'

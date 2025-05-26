@@ -1,0 +1,38 @@
+steve_reactions_add_reaction_controller:
+    path: /add_reaction/{post_id}/{type_id}
+    defaults: { _controller: steve.reactions.add_reaction:add }
+    requirements:
+        type_id: \d+
+
+steve_reactions_delete_reaction_controller:
+    path: /delete_reaction/{post_id}/{user_id}
+    defaults: { _controller: steve.reactions.delete_reaction:delete }
+    requirements:
+        user_id: \d+
+
+steve_reactions_resync_reaction_controller:
+    path: /resync_reaction/{post_id}/{user_id}
+    defaults: { _controller: steve.reactions.resync_reaction:resync }
+    requirements:
+        user_id: \d+
+
+steve_reactions_view_reactions_controller_page:
+    path: /reactions
+    defaults: { _controller: steve.reactions.controller_page:view_reactions }
+
+steve_reactions_view_reactions_controller_pages:
+    path: /reaction/{post_id}/{reaction_id}
+    methods: [GET]
+    defaults: { _controller: steve.reactions.controller_popup:load_post_reactions }
+    requirements:
+        post_id: \d+
+
+steve_reactions_view_user_reactions_controller_pages:
+    path: /user_reaction/{user_id}/{type_id}/{view}
+    defaults: { _controller: steve.reactions.controller_popup:user_reactions }
+    requirements:
+        user_id: \d+
+    requirements:
+        type_id: \d+
+    requirements:
+        view: received|reacted

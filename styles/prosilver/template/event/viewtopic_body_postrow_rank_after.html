@@ -1,0 +1,10 @@
+
+{% if REACTIONS_ENABLED %}
+{% if not postrow.USER_REACTIONS %}
+<span data-show-user-reactions="{{ postrow.POSTER_ID }}" style="display: none;">
+{% endif %}
+<dd>{{ lang('REACTIONS') }}{{ lang('COLON') }}  <a href="{{ postrow.U_POST_AUTHOR }}#user_reactions"> <span data-reactions-user="{{ postrow.POSTER_ID }}">{{ postrow.USER_REACTIONS }}</span></a></dd>
+{% if not postrow.USER_REACTIONS %}
+</span>
+{% endif %}
+{% endif %}

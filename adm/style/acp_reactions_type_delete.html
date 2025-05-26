@@ -1,0 +1,19 @@
+{% INCLUDE 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+{% if SYNC %}
+	<div id="darken" style="display: block;"></div>
+	<div id="phpbb-alert" class="phpbb_alert {% if not DONE %}error{% else %}success{% endif %}" style="display: block;">
+		<h3 class="alert_title">{% if not DONE %}{{ lang('ACP_DELETING_REACTION') }} {% else %} {{ lang('ACP_DELETED_REACTION') }} {% endif %}</h3>
+		<img src="{{ OLD_IMG }}" class="reaction-image" alt="{{ OLD_IMG }}" />
+
+		<p>{% if not DONE %}{{ START }}{% else %}{{ DONE }}{% endif %}</p>
+		{% if DONE %}
+		<a href="{{ U_BACK }}">{{ lang('BACK_TO_PREV') }}</a>
+		{% endif %}
+	</div>
+	<div id="loading_indicator" style="display: {% if not DONE %}block{% else %}none{% endif %};"></div>
+{% endif %}
+
+{% INCLUDE 'overall_footer.html' %}

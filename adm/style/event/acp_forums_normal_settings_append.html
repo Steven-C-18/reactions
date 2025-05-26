@@ -1,0 +1,19 @@
+		</fieldset>
+
+		<fieldset>
+		<dl>
+			<dt><label for="forum_enable_reactions">{{ lang('ACP_REACTIONS_ENABLE') }}{{ lang('COLON') }}</label></dt>
+			<dd><label><input type="checkbox" class="checkbox" name="forum_enable_reactions" value="1" {% if S_ENABLE_REACTIONS %}id="forum_enable_reactions" checked="checked"{% endif %} /></dd>
+		</dl>
+		<dl>
+			<dt><label>{{ lang('ACP_REACTION_TYPE_IDS') }}{{ lang('COLON') }}</label></dt>
+			<dd>
+			{% for reaction_types in loops.reaction_types %}
+				<div style="float: left;text-align: center;">
+					<img src="{{ reaction_types.IMAGE_SRC }}" style="height: 30px;width: 30px;" alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" /><br>
+					<input type="checkbox" class="checkbox" name="forum_reaction_type_ids[{{ reaction_types.ID }}]" value="1" {% if reaction_types.CHECKED %}checked="checked"{% endif %} />
+				</div>
+			{% endfor %}
+			</dd>
+		</dl>
+		</fieldset>

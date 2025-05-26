@@ -1,0 +1,134 @@
+/**
+	* Reactions $extends the phpBB Software package.
+	* @copyright (c) 2024, Steve, https://steven-clark.tech/
+	* @license GNU General Public License, version 2 (GPL-2.0)
+*/
+
+.reaction-notification-alert {
+	text-align: center;
+	margin: 5px 0;
+	border-radius: 5px;
+	background: #ffc0cb;
+	padding: 5px;
+}
+
+.reaction-image {
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
+}
+
+.reaction-image-preview {
+	background: #fff;
+	padding: 8px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.icon { font-size: 22px; }
+.icon-green { color: #1b9A1B; }
+.icon-red { color: #BC2A4D !important; }
+.icon-orange { color: orange; }
+
+.acp-corners { border-radius: 5px; }
+
+div.reactions-even-odd fieldset, fieldset, .zebra-table { 
+	padding: 3px;
+	border-radius: 5px; 
+}
+
+div.reactions-even-odd fieldset dl {
+	padding: 3px;
+	margin: 1px 2px;
+}
+
+div.reactions-even-odd fieldset dl:nth-child(odd) { background-color: #F9F9F9; }
+div.reactions-even-odd fieldset dl:nth-child(even), table.zebra-table tbody tr:nth-child(even) { background-color: #e3e3e3; }
+
+th.reaction-header {
+	text-align: center;
+	background: #e9eaec;
+	border-top: none;
+	border-bottom: none;
+}
+
+.acp_donate, .acp_support, .acp_extensions {
+	font-size: 13px;
+	text-align: center;
+	opacity: 0.8;
+	color: #ffffff !important;
+	margin: 4px;
+	padding: 7px;
+	border-radius: 5px;
+}
+
+.acp_donate { background-color: #002991; }
+
+.acp_support { 
+	background-color: green;
+	color: #ffff32 !important; 
+}
+
+.acp_extensions { background-color: purple; }
+.fa-gradient-beer { background: linear-gradient(white 0.1px, orange 7px, orange 8px); }
+
+i.icon-beer {
+	font-size: 22px;
+	background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.centered-text { text-align: center; }
+
+/* take over */
+
+input, select { 
+	border-radius: 4px;
+	background: #f9f9f9;
+}
+
+input[type=checkbox] {
+	accent-color: #5cb85c;
+	-ms-transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+	-o-transform: scale(1.4);
+	transform: scale(1.4);
+}
+
+input[type=radio] {
+	accent-color: #5cb85c;
+	-ms-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+input[type=checkbox]:hover, input[type=radio]:hover { cursor: pointer; }
+
+input.reaction-form-button-submit, input.reaction-form-button-reset {	
+	padding: 8px !important;
+	cursor: pointer;
+	color: #fff;
+	border: none;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+	
+input.reaction-form-button-submit { background-color: #5cb85c; }
+input.reaction-form-button-reset { background: #ff6600; }
+
+a.reaction-form-button-submit {
+	color: #fff;
+	float: right;	
+	padding: 5px !important;
+	margin: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+	color: #fff;
+	border: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	background: #5cb85c;
+}

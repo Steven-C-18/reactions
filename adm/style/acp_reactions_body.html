@@ -1,0 +1,289 @@
+{% INCLUDE 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+{% if not REACTIONS_ENABLED %}
+	<div class="reaction-notification-alert">
+		<i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i> {{ lang('ACP_REACTIONS_CURRENTLY_DISABLED') }}
+	</div>
+{% endif %}
+
+<fieldset class="acp-corners">
+	<div style="margin: 5px;float: right;">
+		<a href="https://steven-clark.tech/phpBB3/viewforum.php?f=11" target="_blank" class="acp_support">
+			<i class="icon fa-medkit fa-fw" aria-hidden="true"></i><span class="responsive-hide"> {{ lang('ACP_STEVE_HELP') }}</span>
+		</a>
+		<a href="https://steven-clark.tech/phpBB3/viewforum.php?f=5" target="_blank" class="acp_extensions">
+			<i class="icon fa-puzzle-piece fa-fw" aria-hidden="true"></i><span class="responsive-hide"> {{ lang('ACP_STEVE_EXTENSIONS') }}</span>
+		</a>
+		<a href="https://www.paypal.com/paypalme/StevenClark80?country.x=GB&locale.x=en_GB" target="_blank" class="acp_donate">
+			<i class="icon fa-paypal icon-donate fa-fw" aria-hidden="true"></i> {{ lang('ACP_STEVE_DONATE') }} <i class="icon fa-beer icon-beer fa-gradient-beer fa-fw" aria-hidden="true"></i>
+		</a>		
+	</div>
+	
+	<h1>{% if REACTIONS_BUTTON_ICON %}<i id="button_icon_top" class="icon {{ REACTIONS_BUTTON_ICON }} fa-fw" style="color: #{{ REACTIONS_BUTTON_COLOR }}" aria-hidden="true"></i>{% endif %} {{ lang('ACP_REACTIONS_TITLE') }}</h1>
+	<p>{% if not S_SETTINGS_MODE %}{{ lang('ACP_REACTIONS_EXPLAIN') }}{% else %}{{ lang('ACP_REACTIONS_SETTINGS_EXPLAIN') }}{% endif %}</p>
+</fieldset>
+
+{% if S_ERROR %}
+	<div class="reaction-notification-alert">
+		<i class="icon fa-exclamation-circle fa-fw" aria-hidden="true"></i> 
+		<br> {{ S_ERROR }}
+	</div>
+{% endif %}
+
+{% if SYNC %}
+	<div id="darken" style="display: block;"></div>
+	<div id="phpbb-alert" class="phpbb_alert {% if not DONE %}error{% else %}success{% endif %}" style="display: block;">
+		{% if not DONE %}
+			<div class="errorbox">{{ lang('ACP_REACTION_CHANGE_WARN_TOP') }}</div>
+			{% else %}
+			<div class="successbox">{{ lang('ACP_REACTION_CHANGED') }}</div>
+		{% endif %}
+
+		{% if OLD_IMG %}<img src="{{ OLD_IMG }}" class="reaction-image" alt="{{ OLD_IMG }}" />{% endif %}{% if not DONE %}{{ lang('ACP_REACTION_CHANGE') }} {% else %} {{ lang('ACP_REACTION_CHANGED_TO') }} {% endif %} {% if ICON %}<i class="icon fa {{ ICON }}" aria-hidden="true"></i>{% endif %}
+		{% if NEW_IMG %}<img src="{{ NEW_IMG }}" class="reaction-image" alt="{{ NEW_IMG }}" />{% endif %}
+		<p>{% if not DONE %}{{ START }}{% else %}{{ DONE }}{% endif %}</p>
+		{% if DONE %}
+		<a href="{{ U_BACK }}">{{ lang('BACK_TO_PREV') }}</a>
+		{% endif %}
+	</div>
+	<div id="loading_indicator" {% if not DONE %}style="display: block;"{% else %}style="display: none;"{% endif %}></div>
+{% endif %}
+
+{% if U_ADD_REACTION %}
+<div class="reaction-image-preview">
+	<img src="{{ REACTION_IMAGE }}" id="image" height="40" width="40" alt="{{ lang('ACP_SELECT_REACTION_IMAGE_ALT') }}" />
+</div>
+
+{% if S_EDIT && REACTION_COUNT %}
+	<div class="reaction-notification-alert">
+		<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+	<h3>{{ REACTION_COUNT }}</h3>
+	<p>{{ lang('ACP_REACTION_CHANGE_WARN') }}</p>
+</div>
+{% endif %}
+
+<form id="reactions" method="post" action="{{ U_ACTION }}">
+	<div class="reactions-even-odd">
+	<fieldset>
+		<dl>
+			<dt><label for="reaction_type_enable">{{ lang('ACP_REACTION_ENABLE') ~ lang('COLON') }}</label></dt>
+			<dd><input type="checkbox" class="checkbox" name="reaction_type_enable" value="1" {% if REACTION_ENABLE %}id="reaction_type_enable" checked="checked"{% endif %}/></dd>
+		</dl>
+		<dl>
+			<dt><label for="reaction_file_name">{{ lang('ACP_REACTION_IMAGE') ~ lang('COLON') }}</label></dt>
+			<dd>
+				<select name="reaction_file_name" id="reaction_file_name" onchange="document.getElementById('image').src='{{ REACTION_PATHS }}'+$(this).find('option:selected').data('img')">
+				{{ S_FILENAME_LIST }}
+				</select>			
+			</dd>
+		</dl>	
+		<dl>
+			<dt><label for="reaction_type_title">{{ lang('ACP_REACTION_TITLE') ~ lang('COLON') }}</label></dt>
+			<dd><input id="reaction_type_title" type="text" name="reaction_type_title" value="{{ REACTION_TITLE }}" maxlength="255" /></dd>
+		</dl>
+	</fieldset>
+	</div>
+	<fieldset>
+		<p class="submit-buttons">
+			<input class="reaction-form-button-submit" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" /> &nbsp; 
+			<input class="reaction-form-button-reset" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+		</p>
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+{% endif %}
+
+{% if not S_SETTINGS_MODE && not SYNC %}
+	{% if REACTIONS_COUNT %}
+	<div class="pagination">
+	{{ lang('REACTIONS') }} &bull; {{ REACTIONS_COUNT }}
+	{% if loops.pagination|length %}
+		{% INCLUDE 'pagination.html' %}
+	{% endif %}
+	</div>
+	{% endif %}
+
+	{% if not U_ADD_REACTION %}<a href="{{ U_ADD }}" class="reaction-form-button-submit"> {{ lang('ACP_REACTION_ADD') }}</a>{% endif %}
+
+	{% if loops.reaction_types|length %}
+	<table class="table1 zebra-table">
+	<thead>
+	<tr>
+		<th class="centered-text">{{ lang('CAT_REACTION_IMAGE') }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_TITLE') }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_TOTAL') }} {{ REACTIONS_TOTAL }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_PERCENTAGE') }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_ENABLED') }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_ORDER') }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_EDIT') }}</th>
+		<th class="centered-text">{{ lang('CAT_REACTION_DELETE') }}</th>
+	</tr>
+	</thead>
+	<tbody>
+		{% for reaction_types in loops.reaction_types %}
+		<tr>
+			<td  class="centered-text">
+				<img src="{{ reaction_types.IMAGE_SRC }}" class="{{ reaction_types.RTT_LIGHT }}" height="{{ REACTION_IMAGE__HEIGHT }}" width="{{ REACTION_IMAGE_WIDTH }}" alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" />
+			</td>
+			<td class="centered-text">{{ reaction_types.TITLE }}</td>
+			<td class="centered-text" style="width: 100px;">{{ reaction_types.COUNT }}</td>
+			<td class="centered-text" style="width: 100px;">{{ reaction_types.PERCENT }}</td>
+			<td class="activate_deactivate centered-text" style="width: 100px;"><a href="{{ reaction_types.U_ACTIVATE_DEACTIVATE }}" data-ajax="activate_deactivate">{{ reaction_types.L_ACTIVATE_DEACTIVATE }}</a>&nbsp;</td>
+			<td class="actions centered-text">
+ 				<span class="up-disabled" style="display:none;"> &nbsp; <i class="icon fa fa-level-up icon-red" aria-hidden="true"></i></span>
+				<span class="up"><a href="{{ reaction_types.U_MOVE_UP }}" data-ajax="row_up" style="text-decoration: none !important;"> &nbsp; <i class="icon fa fa-level-up icon-green" aria-hidden="true"></i></a></span>
+				<span class="down-disabled" style="display:none;"> &nbsp; <i class="icon fa fa-level-down icon-red" aria-hidden="true"></i></span>
+				<span class="down"><a href="{{ reaction_types.U_MOVE_DOWN }}" data-ajax="row_down" style="text-decoration: none !important;"> &nbsp; <i class="icon fa fa-level-down icon-green" aria-hidden="true"></i></a></span>
+			</td>
+			<td class="actions centered-text">
+				<a href="{{ reaction_types.U_EDIT }}"><i class="icon fa fa-sliders icon-green" aria-hidden="true"></i></a>
+			</td>
+			<td class="actions centered-text">
+				<a href="{{ reaction_types.U_DELETE }}"> <i class="icon fa fa-trash icon-red" aria-hidden="true"></i></a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+
+	{% if REACTIONS_COUNT %}
+	<div class="pagination">
+	{{ lang('REACTIONS') }} &bull; {{ REACTIONS_COUNT }}
+	{% if loops.pagination|length %}
+		{% INCLUDE 'pagination.html' %}
+	{% endif %}
+	</div>
+	{% endif %}
+
+	{% if not U_ADD_REACTION %}<a href="{{ U_ADD }}" class="reaction-form-button-submit"> {{ lang('ACP_REACTION_ADD') }}</a>{% endif %}
+
+{% endif %}
+{% endif %}
+
+{% if S_SETTINGS_MODE %}
+<form id="reactions" method="post" action="{{ U_ACTION }}">
+	<div class="reactions-even-odd">
+		<fieldset {% if not REACTIONS_ENABLED %}class="reaction-notification-alert"{% endif %} style="text-align: left;">
+			<dl>
+				<dt><label for="reactions_enabled">{{ lang('ACP_REACTIONS_ENABLE') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_enabled" id="reactions_enabled" value="1" {% if REACTIONS_ENABLED %}checked="checked"{% endif %} /></dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<dl>
+				<dt><label for="reactions_page_enabled">{{ lang('ACP_REACTION_ENABLE_PAGE') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_page_enabled" id="reactions_page_enabled" value="1" {% if REACTIONS_ENABLE_PAGES %}checked="checked"{% endif %} /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_posts_page_enabled">{{ lang('ACP_REACTION_ENABLE_PAGES') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_posts_page_enabled" id="reactions_posts_page_enabled" value="1" {% if REACTIONS_ENABLE_POST_PAGES %}checked="checked"{% endif %} /></dd>
+			</dl>			
+		</fieldset>
+		<fieldset>			
+			<dl>
+				<dt><label for="reactions_enable_percentage">{{ lang('ACP_REACTIONS_ENABLE_PERCENTAGE') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_enable_percentage" id="reactions_enable_percentage" value="1" {% if REACTIONS_ENABLE_PERCENTAGE %}checked="checked"{% endif %} /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_enable_badge">{{ lang('ACP_REACTIONS_ENABLE_BADGE') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_enable_badge" id="reactions_enable_badge" value="1" {% if REACTIONS_ENABLE_BADGE %}checked="checked"{% endif %} /></dd>
+			</dl>			
+			<dl>
+				<dt><label for="reactions_enable_count">{{ lang('ACP_REACTIONS_ENABLE_COUNT') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_enable_count" id="reactions_enable_count" value="1" {% if REACTIONS_ENABLE_COUNT %}checked="checked"{% endif %} /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reaction_type_count_enable">{{ lang('ACP_REACTION_TYPE_COUNT_ENABLE') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reaction_type_count_enable" id="reaction_type_count_enable" value="1" {% if REACTION_TYPE_COUNT_ENABLE %}checked="checked"{% endif %} /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_author_react">{{ lang('ACP_REACTIONS_POST_AUTHOR_REACT') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_author_react" id="reactions_author_react" value="1" {% if REACTION_AUTHOR_REACT %}checked="checked"{% endif %} /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_resync_enable">{{ lang('ACP_REACTIONS_RESYNC_ENABLE') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_resync_enable" id="reactions_resync_enable" value="1" {% if REACTIONS_RESYNC_ENABLE %}checked="checked"{% endif %} /></dd>
+			</dl>			
+			<dl>
+				<dt><label for="reactions_topic_locked">{{ lang('ACP_REACTIONS_TOPIC_LOCKED') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_topic_locked" id="reactions_topic_locked" value="1" {% if REACTIONS_TOPIC_LOCKED %}checked="checked"{% endif %} /></dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<dl>
+				<dt><label for="reactions_notifications_enabled">{{ lang('ACP_REACTIONS_NOTIFICATIONS_ENABLED') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_notifications_enabled" id="reactions_notifications_enabled" value="1" {% if REACTIONS_NOTIFICATIONS_ENABLED %}checked="checked"{% endif %} /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_notifications_emails_enabled">{{ lang('ACP_REACTIONS_NOTIFICATIONS_EMAILS_ENABLED') ~ lang('COLON') }}</label></dt>
+				<dd><input type="checkbox" name="reactions_notifications_emails_enabled" id="reactions_notifications_emails_enabled" value="1" {% if REACTIONS_NOTIFICATIONS_EMAILS_ENABLED %}checked="checked"{% endif %} /></dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<dl>
+				<dt><label for="reactions_resync_batch">{{ lang('ACP_REACTIONS_RESYNC_BATCH') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_REACTIONS_RESYNC_BATCH_EXPLAIN') }}</span></dt>
+				<dd><input id="reactions_resync_batch" type="number" min="1" max="2000" name="reactions_resync_batch" value="{{ REACTIONS_RESYNC_BATCH }}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_resync_time">{{ lang('ACP_REACTIONS_RESYNC_TIME') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_REACTIONS_RESYNC_TIME_EXPLAIN') }}</span></dt>
+				<dd><input id="reactions_resync_time" type="number" min="0" name="reactions_resync_time" value="{{ REACTIONS_RESYNC_TIME }}" /> {{ lang('SECONDS') }}</dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_per_page">{{ lang('ACP_REACTIONS_PER_PAGE') ~ lang('COLON') }}</label></dt>
+				<dd><input id="reactions_per_page" type="number" min="1" max="25" name="reactions_per_page" value="{{ REACTIONS_PER_PAGE }}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_flood_time">{{ lang('ACP_REACTIONS_FLOOD_TIME') ~ lang('COLON') }}</label></dt>
+				<dd><input id="reactions_flood_time" type="number" min="3" max="86400" name="reactions_flood_time" value="{{ REACTIONS_FLOOD_TIME }}" /> {{ lang('SECONDS') }}</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<dl>
+				<dt><label>{{ lang('ACP_REACTION_PATH') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_REACTION_PATH_EXPLAIN') }}</span></dt>
+				<dd><input class="error" type="text" value="{{ REACTION_PATH }}" size="40" disabled="disabled" maxlength="255" /></dd>
+			</dl>
+			<dl>
+				<dt><label>{{ lang('ACP_REACTION_IMAGE_TYPES_EXT') ~ lang('COLON') }}</label><br></dt>
+				<dd><input class="error" value="{{ REACTION_IMAGE_TYPES_EXT }}" size="40" disabled="disabled" maxlength="255" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reaction_image_height">{{ lang('ACP_REACTIONS_DIMENSIONS') ~ lang('COLON') }}</label></dt>
+				<dd>{{ lang('ACP_REACTIONS_HEIGHT') ~ lang('COLON') }} <input id="reaction_image_height" type="number" min="1" max="40" name="reaction_image_height" value="{{ REACTION_IMAGE_HEIGHT }}" /> {{ lang('PIXEL') }}
+					{{ lang('ACP_REACTIONS_WIDTH') ~ lang('COLON') }} <input id="reaction_image_width" type="number" min="1" max="40" name="reaction_image_width" value="{{ REACTION_IMAGE_WIDTH }}" /> {{ lang('PIXEL') }}</dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_sql_cache">{{ lang('ACP_REACTIONS_CACHE') ~ lang('COLON') }}</label><br><span>{{ lang('ACP_REACTIONS_CACHE_EXPLAIN') }}</span></dt>
+				<dd><input id="reactions_sql_cache" type="number" min="300" max="86400" name="reactions_sql_cache" value="{{ REACTIONS_IMAGE_CACHE }}" /> {{ lang('SECONDS') }}</dd>
+			</dl>
+		</fieldset>
+		<fieldset>
+			<dl>
+				<dt><label for="reactions_dropdown_width">{{ lang('ACP_REACTIONS_DROPDOWN_WIDTH') ~ lang('COLON') }}</label></dt>
+				<dd><input id="reactions_dropdown_width" type="number" min="100" max="300" name="reactions_dropdown_width" value="{{ REACTIONS_DROPDOWN_WIDTH }}" /> {{ lang('PIXEL') }}</dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_button_icon">{{ lang('ACP_REACTIONS_BUTTON_ICON') ~ lang('COLON') }}</label><span><br/><a href="https://fontawesome.com/v4/icons/" target="_blank"><i class="icon fa-external-link fa-fw"></i> {{ lang('ACP_REACTIONS_BUTTON_ICON_EXP') }}</a></span></dt>
+				<dd><input id="reactions_button_icon" type="text" maxlength="255" name="reactions_button_icon" id="reactions_button_icon" value="{{ REACTIONS_BUTTON_ICON }}" /> <i id="button_icon" class="icon fa {{ REACTIONS_BUTTON_ICON }} fa-fw" style="color: #{{ REACTIONS_BUTTON_COLOR }}" aria-hidden="true"></i>
+			</dl>
+			<dl style="overflow: visible;">
+				<dt><label for="reactions_button_color">{{ lang('ACP_REACTIONS_BUTTON_COLOR') ~ lang('COLON') }}</label></dt>
+				<dd><input id="reactions_button_color" type="text" name="reactions_button_color" value="{{ REACTIONS_BUTTON_COLOR }}" maxlength="7" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="reactions_button_top1">{{ lang('ACP_REACTIONS_BUTTON') ~ lang('COLON') }}</label></dt>
+				<dd><input type="radio" class="radio" name="reactions_button_top" id="reactions_button_top1" value="1" {% if REACTIONS_BUTTON_TOP %}checked="checked"{% endif %} /> {{ lang('ACP_REACTIONS_BUTTON_TOP') }} &nbsp;
+					<input type="radio" class="radio" name="reactions_button_top" id="reactions_button_top0" value="0" {% if not REACTIONS_BUTTON_TOP %}checked="checked"{% endif %} /> {{ lang('ACP_REACTIONS_BUTTON_BOTTOM') }}</dd>
+			</dl>
+		</fieldset>
+	</div>
+	<fieldset class="centered-text">
+			<input class="reaction-form-button-submit" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" /> &nbsp; 
+			<input class="reaction-form-button-reset" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+{% endif %}
+
+{% INCLUDE 'overall_footer.html' %}

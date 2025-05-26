@@ -1,0 +1,37 @@
+
+{% if S_FORUM_ENABLE_REACTIONS && postrow.S_POST_REACTION_ENABLE %}
+<span id="post-reactions-{{ postrow.POST_ID }}"></span>
+<div id="post-reactions{{ postrow.POST_ID }}" class="reactions">
+
+{% if not REACTIONS_BUTTON_TOP %}
+{% INCLUDE '@steve_reactions/viewtopic/button.html' %}
+{% endif %}
+	
+	<div id="badge-tpr-{{ postrow.POST_ID }}" class="reaction-ear reaction-ear-color reactions-icon reactions-font" {% if not postrow.POST_REACTIONS or not REACTIONS_ENABLE_COUNT %}style="display: none;">{% endif %}>
+		{% if postrow.U_VIEW_LIST %}
+		<a href="{{ postrow.U_VIEW_LIST }}" data-reaction-type-top-hide="true" data-reaction-img-src="" class="data-show-reactions" title="{{ lang('VIEW_REACTIONS') }}">
+		{% endif %}
+			<strong id="reaction-count{{ postrow.POST_ID }}">{{ postrow.POST_REACTIONS }}</strong>{% if postrow.U_VIEW_LIST %}<i class="icon reactions-font fa-external-link fa-fw {% if not postrow.POST_REACTIONS %}hidden{% endif %}"></i>{% endif %}
+		{% if postrow.U_VIEW_LIST %}
+		</a>
+		{% endif %}
+	</div>
+	
+	<div id="reaction-types{{ postrow.POST_ID }}">
+	{% for reactions in postrow.reactions %}
+		{% if TYPE_COUNT_ENABLE %}
+		<strong class="reaction-ear {% if REACTIONS_ENABLE_BADGE %}reaction-ear-color{% endif %}">{{ reactions.COUNT }}</strong>
+		{% endif %}
+		{% if reactions.U_VIEW_LIST %}
+		<a href="{{ reactions.U_VIEW_LIST }}" data-reaction-img-src="{{ reactions.IMAGE_SRC }}" class="data-show-reactions reaction-user-alert{% if not reactions.S_REACTED %}-new{% endif %}" title="{{ lang('VIEW_REACTIONS') }}">
+		{% endif %}
+			<img id="rimage{{ reactions.ID }}{{ postrow.POST_ID }}" src="{{ reactions.IMAGE_SRC }}" class="reaction-image" {% if REACTION_IMAGE_HEIGHT %}style="height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %} alt="{{ lang('IMAGE') }}" />
+		{% if reactions.U_VIEW_LIST %}
+		</a>
+		{% endif %}
+	{% endfor %}
+	</div>
+
+</div>
+<div class="clear"></div>
+{% endif %}

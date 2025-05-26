@@ -1,0 +1,82 @@
+{% INCLUDE 'overall_header.html' %}
+
+	<div class="panel">
+		<div class="inner">
+			{% if loops.reaction_types|length %}
+			<div class="panel bg3" style="margin-top: 5px;">
+				<div class="inner">
+					<div class="reaction-centered">
+					<p>{{ lang('REACTION_TYPES') }}</p>
+					{% for reaction_types in loops.reaction_types %}
+					<a>
+						<img src="{{ reaction_types.IMAGE_SRC }}" class="reaction-image-size" alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" />
+						{% if reaction_types.COUNT %}
+						<strong class="reaction-ear reaction-ear-color">{{ reaction_types.COUNT }}</strong>
+						{% endif %}
+						{% if REACTIONS_ENABLE_PERCENTAGE %}
+						<br>
+						<strong>{{ reaction_types.PERCENT }}</strong>
+						{% endif %}
+					</a>
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			<h2 class="topic-title">{{ lang('REACTIONS_TITLE') }}</h2>
+			<p>{{ WELCOME_REACTIONS_PAGE }}</p>
+		</div>
+	</div>
+	
+	{% if loops.reactions|length %}
+	<div class="action-bar top">
+		{{ POSTER_COUNT }} &bull; {{ PAGE_NUMBER }}
+		{% if loops.pagination|length %}
+			<div class="pagination">
+			{% INCLUDE 'pagination.html' %}
+		</div>
+		{% endif %}
+	</div>
+
+	{% for reactions in loops.reactions %}
+	<div class="panel {% if reactions.S_ROW_COUNT is odd %}bg1{% else %}bg2{% endif %}">
+		<div class="inner">
+			{% if reactions.USER_REACTIONS %}
+				<strong class="badge reactions-font">{{ reactions.USER_REACTIONS }}</strong>
+			{% endif %}
+
+			<div class="reaction-avatar">
+				{% if reactions.USER_AVATAR && reactions.DISPLAY_AVATAR %}{{ reactions.USER_AVATAR }}{% elseif reactions.DISPLAY_AVATAR %}
+					<img src="{{ T_THEME_PATH }}/images/no_avatar.gif" alt="{{ lang('AVATAR') }}" />
+				{% endif %}
+				{{ reactions.USER_NAME }}
+			</div>
+
+			<div class="reaction-centered">
+				{% for recent in reactions.recent %}
+				{% if recent.U_VIEW %}
+				<a href="{{ recent.U_VIEW }}">
+				{% endif %}
+					<img src="{{ recent.IMAGE_SRC }}" class="reaction-image-size" alt="{{ recent.TITLE }}" title="{{ recent.TITLE }}" />
+					<strong class="reaction-ear reaction-ear-color">{{ recent.COUNT }}</strong>
+					{% if recent.PERCENT %}<br> {{ recent.PERCENT }}{% endif %}
+				{% if recent.U_VIEW %}
+				</a>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	
+	<div class="action-bar bottom">
+		{{ POSTER_COUNT }} &bull; {{ PAGE_NUMBER }}
+		{% if loops.pagination|length %}
+			<div class="pagination">
+			{% INCLUDE 'pagination.html' %}
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+	
+{% INCLUDE 'overall_footer.html' %}

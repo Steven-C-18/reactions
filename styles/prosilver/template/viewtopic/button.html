@@ -1,0 +1,41 @@
+
+				{% if postrow.reaction_types|length && postrow.S_POSTER_ADD && postrow.S_POST_REACTION_ENABLE %}
+                {% if not REACTIONS_BUTTON_TOP %}
+                <ul class="reactions-post-button-ul">
+                {% endif %}
+					<li class="reaction-button-show" data-skip-responsive="true">
+						<div class="dropdown-container dropdown-button-control" id="reaction-dropdown-{{ postrow.POST_ID }}">
+							<span title="{{ lang('ADD_REACTION') }}" class="button button-icon-only button-secondary dropdown-trigger">
+								<i data-show-reaction-types="true" class="icon {% if REACTIONS_BUTTON_ICON %}{{ REACTIONS_BUTTON_ICON }}{% else %}fa-smile-o{% endif %} fa-fw" style="color: {% if REACTIONS_BUTTON_COLOR %}#{{ REACTIONS_BUTTON_COLOR }}{% else %}inherit{% endif %};"></i>
+							</span>
+							<div class="dropdown" {% if REACTIONS_DROPDOWN_WIDTH %}style="width: {{ REACTIONS_DROPDOWN_WIDTH }}px;"{% endif %}>
+								<ul class="dropdown-contents contact-icons" data-show-reaction-types="ul">  
+									<li>
+									{% for reaction_types in postrow.reaction_types %}
+										<a href="{{ reaction_types.U_REACTION_ADD }}" class="add-reaction-input" data-add-reaction="true" {% if reaction_types.CHECKED %}style="display: none;"{% endif %}>
+											<img src="{{ reaction_types.IMAGE_SRC }}" {% if REACTION_IMAGE_HEIGHT %}style="height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %} alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" />
+										</a>
+									{% endfor %}										
+									</li>
+								</ul>
+								<ul class="dropdown-contents contact-icons reaction-contact-icons-with-text">
+									<li id="delete-reaction-button{{ postrow.POST_ID }}" {% if not postrow.U_REACTION_DELETE %}style="display: none;"{% endif %}>
+										<a id="delete-reaction{{ postrow.POST_ID }}" href="{{ postrow.U_REACTION_DELETE }}" data-delete-reaction="true" title="{{ lang('DELETE_REACTION') }}">
+											{{ lang('DELETE') }} <i class="icon fa-times icon-red fa-fw"></i>
+										</a>
+									</li>
+									{% if postrow.S_REFRESH && postrow.U_RESYNC %}
+									<li>
+										<a href="{{ postrow.U_RESYNC }}" title="{{ lang('RESYNC_REACTIONS') }}">
+											{{ lang('REACTION_RESYNC') }} <i class="icon {% if postrow.REFRESH %}fa-spin{% endif %} fa-refresh icon-green fa-fw"></i>
+										</a>
+									</li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+					</li>
+				{% if not REACTIONS_BUTTON_TOP %}
+                </ul>
+				{% endif %}
+                {% endif %}

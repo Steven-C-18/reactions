@@ -1,0 +1,33 @@
+
+{% if S_VIEWTOPIC_REACTIONS && REACTIONS_ENABLED %}
+
+{% INCLUDE '@steve_reactions/viewtopic/view_list.html' %}
+
+<script>
+	var rData = {
+		avatarUrl: '{{ REACTION_AVATAR }}',
+		noAvatar: '{{ T_THEME_PATH }}/images/no_avatar.gif',
+		url: '{{ REACTION_URL }}',
+		userUrl: '{{ REACTION_USER_URL }}',
+		delUrl: '{{ REACTION_A_M_DELETE }}',
+		hash: '{{ REACTION_HASHED }}',
+		height: '{{ REACTION_IMAGE_HEIGHT }}',
+		width: '{{ REACTION_IMAGE_WIDTH }}',
+		badgeEnabled: '{{ REACTIONS_ENABLE_BADGE }}',
+		countEnabled: '{% if TYPE_COUNT_ENABLE %}true{% else %}false{% endif %}',
+		floodTime: '{{ REACTIONS_FLOOD_TIME }}',
+		perPage: '{{ REACTIONS_PER_PAGE }}',
+		sessionTime: '{{ REACTIONS_SESSION }}',
+		quickReply: '{% if R_QR_ACTION %}{{ R_QR_ACTION }}{% endif %}',
+		viewtopic: '{% if S_VIEWTOPIC_REACTIONS %}true{% else %}false{% endif %}',
+		alertMsg: '{{ lang('TOO_FEW_CHARS')|escape('js') }}',
+		alertTitle: '{{ lang('INFORMATION')|escape('js') }}',
+		alt: '{{ lang('REACTIONS')|escape('js') }}',
+		urlTitle: '{{ lang('VIEW_REACTIONS')|escape('js') }}',
+		k: '{{ lang('REACTIONS_K')|escape('js') }}',
+		m: '{{ lang('REACTIONS_M')|escape('js') }}'
+	};
+</script>
+
+{% INCLUDEJS '@steve_reactions/js/ajax_reactions.js' %}
+{% endif %}

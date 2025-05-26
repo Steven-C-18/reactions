@@ -1,0 +1,43 @@
+{% INCLUDE 'overall_header.html' %}
+
+	<strong class="badge reactions-font">{{ lang('REACTIONS') }} {{ COUNT }}</strong>
+	
+	<div style="text-align:center;">
+		<img src="{{ IMG_SRC }}" class="reaction-image-size" alt="{{ TITLE }}" />
+	</div>
+
+	<div class="action-bar top">
+		{{ PAGE_NUMBER }}
+		{% if loops.pagination|length %}
+		<div class="pagination">
+			{% INCLUDE 'pagination.html' %}
+		</div>
+		{% endif %}
+	</div>
+	
+	{% for reaction in loops.reaction %}
+	<div class="panel {% if reaction.S_ROW_COUNT is odd %}bg1{% else %}bg2{% endif %}" style="font-size: 11px;">
+		<div class="inner">
+			{% if reaction.IMG_SRC %}
+			<div class="reaction-image-left">
+				<img src="{{ reaction.IMG_SRC }}" class="reaction-image" {% if REACTION_IMAGE_HEIGHT %}style="height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %} alt="{{ reaction.TITLE }}" />
+			</div>
+			{% endif %}
+			<div class="reaction-avatar">
+				{% if reaction.USER_AVATAR %}{{ reaction.USER_AVATAR }}{% else %}<img src="{{ T_THEME_PATH }}/images/no_avatar.gif" alt="{{ lang('AVATAR') }}" />{% endif %}
+				{{ reaction.NAME }} <strong> | {{ lang('TIME') ~ lang('COLON') }}</strong> {{ reaction.TIME }}{% if reaction.U_VIEW_POST %}{{ lang('COMMA_SEPARATOR') }} {{ lang('IN') ~ lang('COLON') }} <a href="{{ reaction.U_VIEW_POST }}">{{ reaction.POST_SUBJECT }}</a>{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+
+	<div class="action-bar bottom">
+		{{ PAGE_NUMBER }}
+		{% if loops.pagination|length %}
+		<div class="pagination">
+			{% INCLUDE 'pagination.html' %}
+		</div>
+		{% endif %}
+	</div>
+
+{% INCLUDE 'overall_footer.html' %}

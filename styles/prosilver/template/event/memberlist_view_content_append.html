@@ -1,0 +1,49 @@
+
+<div class="reactions-memberlist-container" id="reactions_memberlist">
+
+	{% if RECENT_REACTIONS %}
+	<div class="reactions-memberlist-left">
+		<div id="user_reactions" class="panel bg1" style="text-align: center;height: 90px !important;overflow: auto;border-radius: 5px 0 0 5px;">
+			<div class="inner">
+			<span class="badge reactions-font">{{ lang('REACTIONS_RECIEVED') }} {{ RECENT_REACTIONS }}</span>
+			<div class="clear" style="margin-bottom: 10px;"></div>
+				<ul style="list-style: none;">
+				{% for recieved_reactions in loops.recieved_reactions %}
+					<li style="float: left;padding: 10px;">
+						<a href="{{ recieved_reactions.VIEW }}">
+							<img src="{{ recieved_reactions.IMAGE_SRC }}" class="reaction-image" {% if REACTION_IMAGE_HEIGHT %}style="float: none;height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;background: #{{ BG_COLOR }};border-radius: 10px;padding: 1px"{% endif %}  alt="{{ recieved_reactions.TITLE }}" title="{{ recieved_reactions.TITLE }}" />
+							<strong class="badge reaction-count">{{ recieved_reactions.COUNT }}</strong> 
+							{% if recieved_reactions.PERCENT %}<br> {{ recieved_reactions.PERCENT }}{% endif %}
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+	{% if loops.reactions|length %}
+	<div class="reactions-memberlist-right">
+		<div class="panel bg1" style="text-align: center;height: 90px !important;overflow: auto;border-radius: 0 5px 5px 0;">
+			<div class="inner">
+			<span class="badge reactions-font">{{ lang('REACTIONS') }} {{ REACTIONS }}</span>
+			<div class="clear" style="margin-bottom: 10px;"></div>
+				<ul style="list-style: none;">
+				{% for reactions in loops.reactions %}
+					<li style="float: left;padding: 10px;">
+						<a href="{{ reactions.VIEW }}">
+							<img src="{{ reactions.IMAGE_SRC }}" class="reaction-image" {% if REACTION_IMAGE_HEIGHT %}style="float: none;height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %}  alt="{{ reactions.TITLE }}" title="{{ reactions.TITLE }}" />
+							<strong class="badge reaction-count">{{ reactions.COUNT }}</strong>
+							{% if reactions.PERCENT %}<br> {{ reactions.PERCENT }}{% endif %}
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</div>
+
+<div class="clear"></div>

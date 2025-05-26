@@ -1,0 +1,59 @@
+{% INCLUDE 'ucp_header.html' %}
+
+<form id="ucp" method="post" action="{{ S_UCP_ACTION }}">
+	<h2>{{ lang('UCP_REACTIONS_DEFAULT_POST_SETTINGS') }}</h2>
+
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label for="user_enable_reactions">{{ lang('UCP_ENABLE_REACTIONS') }}{{ lang('COLON') }}</label><br /><span>{{ lang('UCP_ENABLE_REACTIONS_EXPLAIN') }}</span></dt>
+					<dd><input type="radio" name="user_enable_reactions" value="1" {% if S_USER_ENABLE_REACTIONS %} id="user_enable_reactions" checked="checked"{% endif %}{% if not U_DISABLE_REACTIONS %} disabled="disabled"{% endif %} /> {{ lang('YES') }}
+						<input type="radio" name="user_enable_reactions" value="0" {% if not S_USER_ENABLE_REACTIONS %} id="user_enable_reactions" checked="checked"{% endif %}{% if not U_DISABLE_REACTIONS %} disabled="disabled"{% endif %} /> {{ lang('NO') }}</dd>
+				</dl>
+				<hr class="dashed" />
+				<dl>
+					<dt><label for="user_enable_topic_reactions">{{ lang('UCP_TOPIC_REACTIONS_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('UCP_TOPIC_REACTIONS_EXPLAIN') }}</span></dt>
+					<dd><input type="radio" name="user_enable_topic_reactions" value="1" {% if S_USER_ENABLE_TOPIC_REACTIONS %}id="user_enable_topic_reactions" checked="checked"{% endif %}{% if not U_DISABLE_POST_REACTIONS %} disabled="disabled"{% endif %} /> {{ lang('YES') }}
+						<input type="radio" name="user_enable_topic_reactions" value="0" {% if not S_USER_ENABLE_TOPIC_REACTIONS %}id="user_enable_topic_reactions" checked="checked"{% endif %}{% if not U_DISABLE_POST_REACTIONS %} disabled="disabled"{% endif %} /> {{ lang('NO') }}</dd>
+				</dl>			
+				<dl>
+					<dt><label for="user_enable_post_reactions">{{ lang('UCP_POST_REACTIONS_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('UCP_POST_REACTIONS_EXPLAIN') }}</span></dt>
+					<dd><input type="radio" name="user_enable_post_reactions" value="1" {% if S_USER_ENABLE_POST_REACTIONS %}id="user_enable_post_reactions" checked="checked"{% endif %}{% if not U_DISABLE_TOPIC_REACTIONS %} disabled="disabled"{% endif %} /> {{ lang('YES') }}
+						<input type="radio" name="user_enable_post_reactions" value="0" {% if not S_USER_ENABLE_POST_REACTIONS %}id="user_enable_post_reactions" checked="checked"{% endif %}{% if not U_DISABLE_TOPIC_REACTIONS %} disabled="disabled"{% endif %} /> {{ lang('NO') }}</dd>
+				</dl>			
+			</fieldset>
+		</div>
+	</div>
+
+	{% if loops.reaction_types|length && U_DISABLE_REACTION_TYPES %}
+	<h2>{{ lang('SELECT_REACTION_TYPES') }}</h2>
+	<div class="panel">
+		<div class="inner">
+			{% for reaction_types in loops.reaction_types %}
+				<div data-reactions-toggle-enable="{{ reaction_types.ID }}" style="float: left;" {% if reaction_types.CHECKED %}class="reaction_disabled"{% else %}class="reaction_enabled"{% endif %}>						
+					<img src="{{ reaction_types.IMAGE_SRC }}" class="reaction-image" {% if REACTION_IMAGE_HEIGHT %}style="height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %} alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" /><br>
+					<input data-reactions-toggle-enable="true" type="checkbox" class="radio" name="reaction_type_id[{{ reaction_types.ID }}]" value="1" {% if reaction_types.CHECKED %}checked="checked"{% endif %} />
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+
+	<div class="panel">
+		<div class="inner">	
+			<fieldset>
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd>
+						<input type="submit" name="submit" id="submit" class="button1" value="{{ lang('SUBMIT') }}" /> &nbsp; 
+						<input type="reset" value="{{ lang('RESET') }}" name="reset" class="button2" />
+					</dd>
+				</dl>
+				{{ S_FORM_TOKEN }}
+			</fieldset>
+		</div>
+	</div>
+</form>
+
+{% INCLUDE 'ucp_footer.html' %}

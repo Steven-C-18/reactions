@@ -1,0 +1,38 @@
+
+{% if S_FORUM_ENABLE_REACTIONS && (U_DISABLE_TOPIC_REACTIONS || U_DISABLE_POST_REACTIONS || U_DISABLE_REACTION_TYPES) %}
+    <div id="post-reaction" class="panel bg3">
+       <div class="inner">
+	   <fieldset class="fields1">
+
+			{% if U_DISABLE_POST_REACTIONS or U_DISABLE_TOPIC_REACTIONS %}
+			<p>{{ lang('EXPLAIN_REACTIONS_POSTING') }}</p>
+			<div class="panel">
+				<div class="inner">	
+				{% if U_DISABLE_TOPIC_REACTIONS && S_NEW_MESSAGE %}
+					<div><label for="enable_topic_reactions"><input type="checkbox" name="enable_topic_reactions" id="enable_topic_reactions"{{ S_ENABLE_TOPIC_REACTIONS }} /> {{ lang('ENABLE_TOPIC_REACTIONS') }}</label></div>
+				{% endif %}
+				{% if U_DISABLE_POST_REACTIONS %}
+					<div><label for="enable_post_reactions"><input type="checkbox" name="enable_post_reactions" id="enable_post_reactions"{{ S_ENABLE_POST_REACTIONS }} /> {{ lang('ENABLE_POST_REACTIONS') }}</label></div>
+				{% endif %}
+				</div>
+			</div>
+			{% endif %}
+
+			{% if U_DISABLE_REACTION_TYPES %}
+			<p>{{ lang('SELECT_REACTION_TYPES') }}</p>
+			<div class="panel">
+				<div class="inner">	
+				{% for reaction_types in loops.reaction_types %}
+					<div style="float: left;text-align: center;" class="{% if reaction_types.CHECKED %}reaction_disabled{% else %}reaction_enabled{% endif %}">				
+						<img src="{{ reaction_types.IMAGE_SRC }}" class="reaction-image" {% if REACTION_IMAGE_HEIGHT %}style="height: {{ REACTION_IMAGE_HEIGHT }}px;width: {{ REACTION_IMAGE_WIDTH }}px;"{% endif %} alt="{{ reaction_types.TITLE }}" title="{{ reaction_types.TITLE }}" /><br>
+						<input type="checkbox" name="reaction_type_id[{{ reaction_types.ID }}]" value="1" {% if reaction_types.CHECKED %}checked="checked"{% endif %} />
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+			{% endif %}
+			
+		</fieldset>
+		</div>
+	</div>
+{% endif %}	
